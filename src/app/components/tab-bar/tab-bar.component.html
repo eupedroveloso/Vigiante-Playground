@@ -1,0 +1,75 @@
+<div class="tab-bar">
+  <div class="tab-bar__nav">
+
+    <!-- Home -->
+    <button class="tab-bar__nav-btn" type="button" (click)="homeClick.emit()" aria-label="Início">
+      <div class="tab-bar__nav-icon">
+        <img [src]="iconHouse" alt="" class="tab-bar__raster">
+      </div>
+    </button>
+
+    <!-- Back -->
+    <button class="tab-bar__nav-btn" type="button" (click)="backClick.emit()" aria-label="Voltar">
+      <div class="tab-bar__nav-icon">
+        <div class="tab-bar__nav-icon-inner" style="inset: 28.94% 35.78% 27.32% 40%">
+          <img [src]="iconChevronLeft" alt="" class="tab-bar__raster">
+        </div>
+      </div>
+    </button>
+
+    <!-- Forward -->
+    <button class="tab-bar__nav-btn" type="button" (click)="forwardClick.emit()" aria-label="Avançar">
+      <div class="tab-bar__nav-icon">
+        <div class="tab-bar__nav-icon-inner" style="inset: 28.94% 35.78% 27.32% 40%">
+          <img [src]="iconChevronRight" alt="" class="tab-bar__raster">
+        </div>
+      </div>
+    </button>
+
+    <!-- Tabs -->
+    <div class="tab-bar__tabs">
+      @for (tab of tabs(); track $index) {
+        <button
+          class="tab-bar__tab"
+          [class.tab-bar__tab--active]="$index === activeIndex()"
+          type="button"
+          (click)="tabSelect.emit($index)"
+        >
+          <!-- Map icon -->
+          <div class="tab-bar__tab-icon">
+            <div class="tab-bar__tab-icon-inner" style="inset: 11.67% 10%">
+              <img
+                [src]="$index === activeIndex() ? iconMapActive : iconMapInactive"
+                alt=""
+                class="tab-bar__raster"
+              >
+            </div>
+          </div>
+
+          <!-- Label -->
+          <span class="tab-bar__tab-label">{{ tab.label }}</span>
+
+          <!-- Close -->
+          <button
+            class="tab-bar__tab-close"
+            [class.tab-bar__tab-close--visible]="$index === activeIndex()"
+            type="button"
+            (click)="$event.stopPropagation(); tabClose.emit($index)"
+            aria-label="Fechar aba"
+          >
+            <div class="tab-bar__tab-icon">
+              <div class="tab-bar__tab-icon-inner" style="inset: 20%">
+                <img
+                  [src]="$index === activeIndex() ? iconXmarkActive : iconXmarkInactive"
+                  alt=""
+                  class="tab-bar__raster"
+                >
+              </div>
+            </div>
+          </button>
+        </button>
+      }
+    </div>
+
+  </div>
+</div>

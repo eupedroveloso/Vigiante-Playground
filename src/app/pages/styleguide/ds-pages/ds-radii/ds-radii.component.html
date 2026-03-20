@@ -1,0 +1,13 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Radii</h2>
+
+  <div class="ds-radius-grid">
+    @for (r of radii; track r.token) {
+      <div class="ds-radius-card">
+        <div class="ds-radius-box" [style.border-radius]="r.value"></div>
+        <code>{{ r.token }}</code>
+        <span>{{ r.value }}</span>
+      </div>
+    }
+  </div>
+</div>

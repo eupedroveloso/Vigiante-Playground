@@ -1,0 +1,31 @@
+<div class="ds-page">
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Breadcrumb</h2>
+    <p class="ds-page__note">Figma node: 2564:13882</p>
+    <div class="ds-component-frame" style="padding: 16px 20px;">
+      <app-breadcrumb
+        [items]="[
+          { label: 'Início', href: '/' },
+          { label: 'Projetos', href: '/projetos' },
+          { label: 'Focos de Dengue' }
+        ]"
+      />
+    </div>
+  </section>
+
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Variações</h2>
+    <div class="ds-component-frame" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;">
+      <app-breadcrumb [items]="[{ label: 'Início' }]" />
+      <app-breadcrumb [items]="[{ label: 'Início', href: '/' }, { label: 'Projetos' }]" />
+      <app-breadcrumb
+        [items]="[
+          { label: 'Início', href: '/' },
+          { label: 'Projetos', href: '/projetos' },
+          { label: 'Focos de Dengue', href: '/projetos/1' },
+          { label: 'Mapa' }
+        ]"
+      />
+    </div>
+  </section>
+</div>

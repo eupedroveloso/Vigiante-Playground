@@ -1,0 +1,12 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  @for (item of items(); track $index) {
+    @if ($index > 0) {
+      <app-icon name="chevron-right" [size]="16" aria-hidden="true" />
+    }
+    @if (item.href) {
+      <a class="breadcrumb__item" [href]="item.href">{{ item.label }}</a>
+    } @else {
+      <span class="breadcrumb__item">{{ item.label }}</span>
+    }
+  }
+</nav>

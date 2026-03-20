@@ -1,0 +1,15 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Icons</h2>
+  <p class="ds-page__note">Todos os ícones são SVG inline extraídos diretamente do Figma (O6uB8euWnYP5gOyz28MSzr).</p>
+
+  <div class="ds-icon-grid">
+    @for (icon of icons; track icon.name) {
+      <div class="ds-icon-card">
+        <div class="ds-icon-preview">
+          <app-icon [name]="icon.name" [size]="24" />
+        </div>
+        <code class="ds-icon-label">{{ icon.label }}</code>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,168 @@
+// CardProject — Figma node: 2045:1762
+
+.card-project {
+  display: flex;
+  flex-direction: column;
+  width: 336px;
+  background-color: var(--theme-background-elevated);
+  border: var(--border-width) solid var(--theme-border-primary);
+  border-radius: 10px;
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// Thumbnail
+
+.card-project__thumb {
+  height: 144px;
+  width: 100%;
+  background-color: #d9d9d9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-project__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// Body
+
+.card-project__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  width: 100%;
+}
+
+// Header
+
+.card-project__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-project__name {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-sm);
+  color: var(--theme-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.card-project__menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: var(--space-8);
+}
+
+// Footer
+
+.card-project__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+// Stats chip
+
+.card-project__stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 96px;
+  padding: 2px var(--spacing-1-5);
+  background-color: var(--theme-text-inverse);
+  border: var(--border-width) solid var(--theme-border-primary);
+  border-radius: 4px;
+}
+
+.card-project__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.card-project__stat-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-normal);
+  line-height: 16px;
+  color: var(--theme-text-tertiary);
+  white-space: nowrap;
+}
+
+// Edited at
+
+.card-project__edited {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-normal);
+  line-height: 16px;
+  color: var(--theme-text-tertiary);
+  opacity: 0.3;
+  white-space: nowrap;
+}
+
+// Figma icon approach
+// Ícones retornados pelo Figma MCP como assets de imagem posicionados.
+// Posicionamentos (inset) extraídos exatamente do código gerado pelo Figma.
+
+.card-project__figma-icon {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  &--16 { width: 16px; height: 16px; }
+  &--12 { width: 12px; height: 12px; }
+}
+
+.card-project__figma-icon-primary {
+  position: absolute;
+
+  // ellipsis: Figma node I2045:1721;2006:674 | inset[45%_15%]
+  &--ellipsis {
+    inset: 45% 15%;
+  }
+
+  // list: Figma node I2045:1846;2006:764 | inset[17.5%_10%_17.5%_12.5%]
+  &--list {
+    inset: 17.5% 10% 17.5% 12.5%;
+  }
+
+  // location-dot: Figma node I2045:1859;2006:672 | inset[10%_20%_9.53%_20%]
+  &--location {
+    inset: 10% 20% 9.53% 20%;
+  }
+}
+
+.card-project__figma-img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,357 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--theme-background-primary, #ededed);
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+
+.pf__header {
+  flex: 0 0 128px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 10;
+}
+
+// Toolbar row (52px)
+.pf__toolbar {
+  flex: 0 0 52px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: var(--theme-background-elevated, white);
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+}
+
+.pf__toolbar-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.pf__tsec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+
+  &--br { border-right: 1px solid var(--theme-border-primary, #ededed); }
+  &--bl { border-left:  1px solid var(--theme-border-primary, #ededed); }
+  &--gap { gap: 8px; }
+}
+
+.pf__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pf__mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--theme-background-elevated-down, #f8f8f8);
+  border-radius: 10px;
+}
+
+.pf__mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &--inactive {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+    border: 1px solid var(--theme-background-elevated-down, #f8f8f8);
+    opacity: 0.45;
+  }
+
+  &--active {
+    background: var(--theme-background-elevated, white);
+    border: 1px solid var(--theme-border-primary, #ededed);
+  }
+}
+
+.pf__location-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--theme-background-elevated-down, #f8f8f8);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 8px;
+}
+
+.pf__location-count {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+.pf__btn-primary {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 8px 16px;
+  background: var(--theme-background-brand, #a001a8);
+  color: var(--theme-text-inverse, #f8f8f8);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pf__search {
+  display: flex;
+  align-items: center;
+}
+
+.pf__search-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--theme-background-elevated, white);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+}
+
+.pf__search-input {
+  display: flex;
+  align-items: center;
+  width: 256px;
+  height: 36px;
+  padding: 4px 12px;
+  background: var(--theme-background-elevated, white);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 0 8px 8px 0;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  color: var(--theme-text-tertiary, #767070);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+// Breadcrumb row (44px)
+.pf__breadcrumb-bar {
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  padding: 4px 4px 4px 16px;
+  background: var(--theme-background-elevated, white);
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+}
+
+// ─── Body ────────────────────────────────────────────────────────────────────
+
+.pf__body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+// ─── Panel ───────────────────────────────────────────────────────────────────
+
+.pf__panel {
+  flex: 0 0 auto;
+  width: 804px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 8px;
+  background: var(--theme-background-elevated, white);
+  height: 100%;
+  overflow: hidden;
+  transition: width 0.25s ease, padding 0.25s ease;
+
+  &--collapsed {
+    width: 0;
+    padding: 0;
+  }
+}
+
+// Data table
+.pf__table-wrap {
+  width: 100%;
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pf__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.pf__th {
+  height: 32px;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--theme-text-primary, #0d0d0d);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--records { width: 155px; padding: 8px; }
+  &--actions { width: 85px;  padding: 8px; }
+}
+
+.pf__td {
+  height: 57px;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  color: var(--theme-text-primary, #0d0d0d);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--records { width: 155px; padding: 8px; }
+  &--actions { width: 85px;  padding: 8px 16px 8px 8px; }
+}
+
+.pf__tr:last-child .pf__td {
+  border-bottom: none;
+}
+
+.pf__action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+}
+
+// Pagination
+.pf__pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.pf__page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--theme-text-primary, #0d0d0d);
+  cursor: pointer;
+
+  &--active {
+    border-color: #9747ff;
+    box-shadow: 0 0 0 3px rgba(151, 71, 255, 0.2);
+  }
+}
+
+// ─── Sidebar toggle ───────────────────────────────────────────────────────────
+// Positioned absolutely at the panel/map boundary; slides with the panel
+
+.pf__sidebar-toggle {
+  position: absolute;
+  left: 786px; // panel(804px) - half-button(18px) = 786
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--theme-background-elevated, white);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  z-index: 500;
+  padding: 0;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
+  transition: left 0.25s ease;
+
+  &--collapsed {
+    left: 0;
+  }
+}
+
+.pf__sidebar-toggle-img {
+  position: absolute;
+  width: 12.8px;
+  height: 9.6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  max-width: none;
+}
+
+// ─── Map ─────────────────────────────────────────────────────────────────────
+
+.pf__map {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+// ─── Shared raster icon helper ────────────────────────────────────────────────
+
+.pf__ri {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  overflow: hidden; // must be 'hidden', NOT 'clip' — matches icon.component pattern
+  flex-shrink: 0;
+}
+
+// Inner positioning div (set via inline style inset) needs position: absolute
+.pf__ri > div {
+  position: absolute;
+}
+
+.pf__ri-img,
+.pf__ri > div > img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}

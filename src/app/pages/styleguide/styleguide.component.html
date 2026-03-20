@@ -1,0 +1,43 @@
+<div class="ds-layout">
+
+  <!-- Sidebar -->
+  <aside class="ds-sidebar">
+    <div class="ds-sidebar__brand">
+      <app-icon name="vigiante-logo" />
+      <span class="ds-sidebar__brand-label">Design System</span>
+    </div>
+
+    <nav class="ds-sidebar__nav">
+      @for (item of navItems; track item.label) {
+        @if (item.type === 'link') {
+          <a
+            class="ds-sidebar__item"
+            [routerLink]="item.path"
+            routerLinkActive="ds-sidebar__item--active"
+          >
+            {{ item.label }}
+          </a>
+        } @else {
+          <div class="ds-sidebar__group">
+            <span class="ds-sidebar__group-label">{{ item.label }}</span>
+            @for (child of item.children; track child.path) {
+              <a
+                class="ds-sidebar__item ds-sidebar__item--child"
+                [routerLink]="child.path"
+                routerLinkActive="ds-sidebar__item--active"
+              >
+                {{ child.label }}
+              </a>
+            }
+          </div>
+        }
+      }
+    </nav>
+  </aside>
+
+  <!-- Content (each page fills this area) -->
+  <main class="ds-content">
+    <router-outlet />
+  </main>
+
+</div>

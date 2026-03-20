@@ -1,0 +1,30 @@
+<div class="ds-page">
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Tab Bar</h2>
+    <p class="ds-page__note">Figma node: 2564:13900</p>
+    <div class="ds-component-frame">
+      <app-tab-bar
+        [tabs]="[
+          { label: 'Projeto' },
+          { label: 'Projeto' },
+          { label: 'Projeto' }
+        ]"
+        [activeIndex]="0"
+      />
+    </div>
+  </section>
+
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Aba ativa: segunda</h2>
+    <div class="ds-component-frame">
+      <app-tab-bar
+        [tabs]="[
+          { label: 'Focos de Dengue' },
+          { label: 'RHAMB - DF' },
+          { label: 'Brasília Norte' }
+        ]"
+        [activeIndex]="1"
+      />
+    </div>
+  </section>
+</div>

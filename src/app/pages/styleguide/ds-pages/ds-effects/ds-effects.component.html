@@ -1,0 +1,13 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Effects</h2>
+
+  <div class="ds-shadow-grid">
+    @for (shadow of shadows; track shadow.token) {
+      <div class="ds-shadow-card">
+        <div class="ds-shadow-box" [style.box-shadow]="shadow.value"></div>
+        <code>{{ shadow.token }}</code>
+        <span>{{ shadow.label }}</span>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<header class="pf__header">
+  <!-- Tab bar row: 32px, dark background -->
+  <app-tab-bar [tabs]="tabs" [activeIndex]="0" />
+
+  <!-- Toolbar row: 52px, white background -->
+  <div class="pf__toolbar">
+    <div class="pf__toolbar-side pf__toolbar-side--left">
+      <!-- Bars / hamburger -->
+      <div class="pf__tsec pf__tsec--br">
+        <button class="pf__icon-btn">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:20% 15%">
+              <img [src]="iconBars" alt="" class="pf__ri-img">
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- View mode toggle: map / list -->
+      <div class="pf__tsec pf__tsec--br">
+        <div class="pf__mode-toggle">
+          <button class="pf__mode-btn pf__mode-btn--inactive">
+            <div class="pf__ri">
+              <div style="position:absolute;inset:11.67% 10% 11.65% 10%">
+                <img [src]="iconMapDark" alt="" class="pf__ri-img">
+              </div>
+            </div>
+          </button>
+          <button class="pf__mode-btn pf__mode-btn--active">
+            <div class="pf__ri">
+              <div style="position:absolute;inset:17.5% 10% 17.5% 12.5%">
+                <img [src]="iconListLight" alt="" class="pf__ri-img">
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Location count + primary action -->
+      <div class="pf__tsec pf__tsec--br pf__tsec--gap">
+        <div class="pf__location-badge">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:10% 20% 9.53% 20%">
+              <img [src]="iconLocationDot" alt="" class="pf__ri-img">
+            </div>
+          </div>
+          <span class="pf__location-count">{{ mapPins.length }}</span>
+        </div>
+        <button class="pf__btn-primary">Criar Formulário</button>
+      </div>
+    </div>
+
+    <div class="pf__toolbar-side pf__toolbar-side--right">
+      <!-- Search input -->
+      <div class="pf__tsec pf__tsec--bl">
+        <div class="pf__search">
+          <div class="pf__search-icon-wrap">
+            <div class="pf__ri">
+              <div style="position:absolute;inset:10% 10.01% 10.01% 10%">
+                <img [src]="iconSearch" alt="" class="pf__ri-img">
+              </div>
+            </div>
+          </div>
+          <div class="pf__search-input">Buscar Formulário</div>
+        </div>
+      </div>
+
+      <!-- Bell -->
+      <div class="pf__tsec pf__tsec--bl">
+        <button class="pf__icon-btn">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:10% 15%">
+              <img [src]="iconBell" alt="" class="pf__ri-img">
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb row: 44px, white background -->
+  <div class="pf__breadcrumb-bar">
+    <app-breadcrumb [items]="breadcrumbItems" />
+  </div>
+</header>
+
+<div class="pf__body">
+  <!-- Left white panel: 804px -->
+  <div class="pf__panel" [class.pf__panel--collapsed]="!panelExpanded()">
+    <!-- Data table -->
+    <div class="pf__table-wrap">
+      <table class="pf__table">
+        <thead>
+          <tr>
+            <th class="pf__th pf__th--name">Nome do Formulário</th>
+            <th class="pf__th pf__th--records">Registros</th>
+            <th class="pf__th pf__th--actions">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (form of forms; track form.name) {
+            <tr class="pf__tr">
+              <td class="pf__td pf__td--name">{{ form.name }}</td>
+              <td class="pf__td pf__td--records">{{ form.records }}</td>
+              <td class="pf__td pf__td--actions">
+                <button class="pf__action-btn">
+                  <div class="pf__ri">
+                    <div style="position:absolute;inset:45% 15%">
+                      <img [src]="iconEllipsis" alt="" class="pf__ri-img">
+                    </div>
+                  </div>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pf__pagination">
+      <button class="pf__page-btn pf__page-btn--active">1</button>
+      <button class="pf__page-btn">2</button>
+      <button class="pf__page-btn">3</button>
+    </div>
+
+  </div>
+
+  <!-- Sidebar toggle — sits at the panel/map boundary, outside the panel -->
+  <button
+    class="pf__sidebar-toggle"
+    [class.pf__sidebar-toggle--collapsed]="!panelExpanded()"
+    (click)="togglePanel()"
+    [attr.aria-label]="panelExpanded() ? 'Compactar painel' : 'Expandir painel'"
+  >
+    <div class="pf__ri" style="overflow:visible">
+      <img [src]="iconSidebarToggle" alt="" class="pf__sidebar-toggle-img">
+    </div>
+  </button>
+
+  <!-- Interactive OpenStreetMap -->
+  <div class="pf__map">
+    <app-map [center]="mapCenter" [zoom]="mapZoom" [pins]="mapPins" />
+  </div>
+</div>

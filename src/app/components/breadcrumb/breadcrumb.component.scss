@@ -1,0 +1,18 @@
+// Figma node: 2564:13882
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.breadcrumb__item {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-normal);
+  line-height: 1;
+  color: var(--theme-text-tertiary);
+  white-space: nowrap;
+  padding: 0 4px;
+  text-decoration: none;
+}

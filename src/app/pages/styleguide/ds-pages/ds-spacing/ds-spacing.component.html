@@ -1,0 +1,15 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Space</h2>
+
+  <div class="ds-spacing-list">
+    @for (space of spacings; track space.token) {
+      <div class="ds-spacing-row">
+        <div class="ds-spacing-bar-wrapper">
+          <div class="ds-spacing-bar" [style.width]="space.value === '0px' ? '2px' : space.value"></div>
+        </div>
+        <code class="ds-spacing-token">{{ space.token }}</code>
+        <span class="ds-spacing-value">{{ space.value }}</span>
+      </div>
+    }
+  </div>
+</div>

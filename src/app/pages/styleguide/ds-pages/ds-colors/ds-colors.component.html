@@ -1,0 +1,20 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Colors</h2>
+
+  <div class="ds-color-grid">
+    @for (color of colors; track color.token) {
+      <div class="ds-color-card">
+        <div
+          class="ds-color-swatch"
+          [style.background-color]="color.value"
+          [class.ds-color-swatch--bordered]="color.value === '#ffffff' || color.value === '#f8f8f8'"
+        ></div>
+        <div class="ds-color-info">
+          <span class="ds-color-label">{{ color.label }}</span>
+          <code class="ds-color-token">{{ color.token }}</code>
+          <code class="ds-color-value">{{ color.value }}</code>
+        </div>
+      </div>
+    }
+  </div>
+</div>

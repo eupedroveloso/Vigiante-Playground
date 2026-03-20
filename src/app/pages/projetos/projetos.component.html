@@ -1,0 +1,27 @@
+<div class="projetos">
+
+  <app-context-bar pageTitle="Projetos" />
+
+  <!-- Cards grid -->
+  <div class="projetos__grid">
+    @for (project of projects; track project.name) {
+      <app-card-project
+        [name]="project.name"
+        [imageUrl]="project.imageUrl"
+        [layerCount]="project.layerCount"
+        [locationCount]="project.locationCount"
+        [editedAt]="project.editedAt"
+      />
+    }
+  </div>
+
+  <!-- Footer -->
+  <footer class="projetos__footer">
+    <span class="projetos__footer-text">© 2026 - Vigiante</span>
+    <span class="projetos__footer-sep">|</span>
+    <span class="projetos__footer-text">Todos os direitos reservados</span>
+    <span class="projetos__footer-sep">|</span>
+    <span class="projetos__footer-text">Versão 0.0.1</span>
+  </footer>
+
+</div>

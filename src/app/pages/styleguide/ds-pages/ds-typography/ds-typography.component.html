@@ -1,0 +1,24 @@
+<div class="ds-page">
+  <h2 class="ds-page__title">Typography</h2>
+
+  <div class="ds-type-list">
+    @for (type of typography; track type.name) {
+      <div class="ds-type-row">
+        <div class="ds-type-preview">
+          <span
+            [style.font-family]="type.family + ', sans-serif'"
+            [style.font-size]="type.size"
+            [style.line-height]="type.lineHeight"
+            [style.font-weight]="type.weight.split(' ')[0]"
+          >
+            Aa Bb Cc — {{ type.name }}
+          </span>
+        </div>
+        <div class="ds-type-meta">
+          <code>{{ type.name }}</code>
+          <span>{{ type.family }} · {{ type.weight }} · {{ type.size }} / {{ type.lineHeight }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

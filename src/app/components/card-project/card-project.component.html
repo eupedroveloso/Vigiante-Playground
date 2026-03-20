@@ -1,0 +1,68 @@
+<!-- Figma node: 2045:1762 — Card Project -->
+<article class="card-project">
+
+  <!-- Thumbnail -->
+  <div class="card-project__thumb">
+    @if (imageUrl()) {
+      <img class="card-project__thumb-img" [src]="imageUrl()!" [alt]="name()" />
+    }
+  </div>
+
+  <!-- Body -->
+  <div class="card-project__body">
+
+    <!-- Header: name + ellipsis menu -->
+    <!-- ellipsis: Figma node 2045:1721 | Primary inset[45%_15%] inside 16×16px -->
+    <div class="card-project__header">
+      <span class="card-project__name">{{ name() }}</span>
+      <button class="card-project__menu-btn" type="button" aria-label="Opções do projeto">
+        <div class="card-project__figma-icon card-project__figma-icon--16">
+          <div class="card-project__figma-icon-primary card-project__figma-icon-primary--ellipsis">
+            <img
+              alt=""
+              class="card-project__figma-img"
+              src="https://www.figma.com/api/mcp/asset/9ce991cc-cbf1-461e-b065-a0553c66d1f0"
+            />
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Footer: stats + edited at -->
+    <div class="card-project__footer">
+
+      <!-- Stats chip -->
+      <!-- list: Figma node 2045:1846 | Primary inset[17.5%_10%_17.5%_12.5%] inside 12×12px -->
+      <!-- location-dot: Figma node 2045:1859 | Primary inset[10%_20%_9.53%_20%] inside 12×12px -->
+      <div class="card-project__stats">
+        <div class="card-project__stat">
+          <div class="card-project__figma-icon card-project__figma-icon--12">
+            <div class="card-project__figma-icon-primary card-project__figma-icon-primary--list">
+              <img
+                alt=""
+                class="card-project__figma-img"
+                src="https://www.figma.com/api/mcp/asset/38aaceca-db40-4fd1-81bd-9e8ab4fd5af0"
+              />
+            </div>
+          </div>
+          <span class="card-project__stat-value">{{ layerCount() }}</span>
+        </div>
+        <div class="card-project__stat">
+          <div class="card-project__figma-icon card-project__figma-icon--12">
+            <div class="card-project__figma-icon-primary card-project__figma-icon-primary--location">
+              <img
+                alt=""
+                class="card-project__figma-img"
+                src="https://www.figma.com/api/mcp/asset/0b7c0692-c6fb-477d-9e40-80a85a92abc5"
+              />
+            </div>
+          </div>
+          <span class="card-project__stat-value">{{ locationCount() }}</span>
+        </div>
+      </div>
+
+      <span class="card-project__edited">Editado a {{ editedAt() }}</span>
+    </div>
+
+  </div>
+</article>

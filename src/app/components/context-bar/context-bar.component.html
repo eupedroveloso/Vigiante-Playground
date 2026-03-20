@@ -1,0 +1,69 @@
+<!-- ContextBar — Figma node: 2560:13516 -->
+<div class="context-bar">
+
+  <!-- Top bar -->
+  <div class="context-bar__top">
+    <div class="context-bar__functions">
+
+      <!-- Left: logo + nav label -->
+      <div class="context-bar__left">
+        <div class="context-bar__logo-wrapper">
+          <app-icon name="vigiante-logo" />
+        </div>
+        <div class="context-bar__nav-item">
+          <span class="context-bar__nav-label">{{ pageTitle() }}</span>
+        </div>
+      </div>
+
+      <!-- Right: search + button + icon buttons -->
+      <div class="context-bar__right">
+
+        <!-- Search -->
+        <div class="context-bar__search-group">
+          <button class="context-bar__search-trigger" type="button" aria-label="Buscar">
+            <app-icon name="magnifying-glass" class="context-bar__search-icon" />
+          </button>
+          <div class="context-bar__search-input-wrapper">
+            <input
+              class="context-bar__search-input"
+              type="text"
+              placeholder="Buscar Projeto"
+              aria-label="Buscar Projeto"
+            />
+          </div>
+        </div>
+
+        <!-- Criar projeto button -->
+        <div class="context-bar__action-group">
+          <button class="context-bar__btn-primary" type="button">
+            Criar projeto
+          </button>
+        </div>
+
+        <!-- Icon buttons -->
+        <div class="context-bar__icon-group">
+          <button class="context-bar__icon-btn" type="button" aria-label="Perfil">
+            <app-icon name="user" />
+          </button>
+          <button class="context-bar__icon-btn" type="button" aria-label="Notificações">
+            <app-icon name="bell" />
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb bar -->
+  <div class="context-bar__breadcrumb-bar">
+    <nav class="context-bar__breadcrumb" aria-label="Navegação estrutural">
+      @for (item of breadcrumb(); track item.label; let last = $last) {
+        <span class="context-bar__breadcrumb-item">{{ item.label }}</span>
+        @if (!last) {
+          <app-icon name="chevron-right" class="context-bar__breadcrumb-sep" />
+        }
+      }
+    </nav>
+  </div>
+
+</div>
