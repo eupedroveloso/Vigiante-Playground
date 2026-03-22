@@ -1,0 +1,87 @@
+<!-- Figma node: 2143:12561 — records-table panel -->
+<div class="records-table">
+
+  <!-- Header: "Formulário: [title]" + expand button -->
+  <!-- Figma node: 2143:12562 | px-24 py based on h=68px | border-bottom -->
+  <div class="records-table__header">
+    <div class="records-table__title-group">
+      <!-- "Formulário:" — Body/lg 20px/28px Regular, text-tertiary -->
+      <span class="records-table__label">Formulário:</span>
+      <!-- title — Body Strong/lg 20px/28px SemiBold, text-primary -->
+      <span class="records-table__title">{{ formTitle() }}</span>
+    </div>
+    <!-- Expand button: 36×36, transparent, rounded-8 -->
+    <!-- Icon: 12.8×9.6px centered in 16×16 | Figma I2143:12566;2007:1185;2138:6057 -->
+    <button class="records-table__expand-btn" type="button" aria-label="Expandir painel" (click)="expand.emit()">
+      <div class="records-table__icon-wrap">
+        <img class="records-table__expand-img" [src]="ICON_EXPAND" alt="" />
+      </div>
+    </button>
+  </div>
+
+  <!-- Scrollable table area -->
+  <div class="records-table__scroll">
+    <!-- Figma node: 2143:12568 — Table 788px wide -->
+    <table class="records-table__table">
+      <thead>
+        <tr class="records-table__thead-row">
+          <!-- # column: 121px, pl-24 -->
+          <th class="records-table__th records-table__th--id">#</th>
+          <!-- Usuário column: 240px, pl-8 -->
+          <th class="records-table__th records-table__th--user">Usuário</th>
+          <!-- Data da Criação: 171px, pl-8 -->
+          <th class="records-table__th records-table__th--date">Data da Criação</th>
+          <!-- Data da Atualização: 171px, pl-8 -->
+          <th class="records-table__th records-table__th--date">Data da Atualização</th>
+          <!-- Ações: 85px, pl-8 -->
+          <th class="records-table__th records-table__th--actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.id) {
+          <tr class="records-table__tr">
+
+            <!-- # — pl-24 -->
+            <td class="records-table__td records-table__td--id">{{ row.id }}</td>
+
+            <!-- Usuário — pl-8 -->
+            <td class="records-table__td records-table__td--user">{{ row.user }}</td>
+
+            <!-- Data da Criação — date | vertical sep | time -->
+            <!-- Figma node: 2143:12730 | pl-8 pr-16 | justify-between -->
+            <td class="records-table__td records-table__td--date">
+              <div class="records-table__date-cell">
+                <span class="records-table__date-text">{{ row.createdDate }}</span>
+                <span class="records-table__date-sep"></span>
+                <span class="records-table__time-text">{{ row.createdTime }}</span>
+              </div>
+            </td>
+
+            <!-- Data da Atualização — date | vertical sep | time -->
+            <td class="records-table__td records-table__td--date">
+              <div class="records-table__date-cell">
+                <span class="records-table__date-text">{{ row.updatedDate }}</span>
+                <span class="records-table__date-sep"></span>
+                <span class="records-table__time-text">{{ row.updatedTime }}</span>
+              </div>
+            </td>
+
+            <!-- Ações — ellipsis button -->
+            <!-- Figma node: 2143:12850 | button 36×36 x=8 in the cell -->
+            <td class="records-table__td records-table__td--actions">
+              <button class="records-table__action-btn" type="button" aria-label="Opções do registro">
+                <div class="records-table__ellipsis-icon">
+                  <div class="records-table__ellipsis-inner">
+                    <img [src]="ICON_ELLIPSIS" alt="" class="records-table__icon-img" />
+                  </div>
+                </div>
+              </button>
+            </td>
+
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

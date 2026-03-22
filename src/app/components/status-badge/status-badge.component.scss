@@ -1,0 +1,24 @@
+// StatusBadge — Figma node 2214:8054 (Ativo) | 2214:8101 (Desativado)
+// px-4, radius 4px, 12px/20px Label/sm Regular
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--theme-text-secondary, #272626);
+  white-space: nowrap;
+
+  &--ativo {
+    background: var(--theme-background-success-subtle, #a7f6c0);
+  }
+
+  &--desativado {
+    background: var(--theme-background-tertiary, #d7d6d6);
+  }
+}

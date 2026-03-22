@@ -1,0 +1,316 @@
+<!-- Figma nodes: 2203:13680 | 2214:7732 | 2214:15822 | 2214:8107 -->
+
+<header class="cp__header">
+
+  <!-- Top bar: logo + "Criar Projeto" + bell — Figma node I2203:13681;2045:619 / 52px -->
+  <div class="cp__topbar">
+    <div class="cp__topbar-left">
+
+      <!-- Vigiante logo — Figma node I2203:13681;2045:1044 | 20.734×16px -->
+      <div class="cp__logo-wrapper">
+        <div class="cp__logo">
+          <div class="cp__logo-group">
+            <div class="cp__logo-top">
+              <img [src]="iconLogoTop" alt="Vigiante" class="cp__logo-img">
+            </div>
+            <div class="cp__logo-bottom">
+              <img [src]="iconLogoBottom" alt="" class="cp__logo-img">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page title -->
+      <div class="cp__nav-item">
+        <span class="cp__nav-label">Criar Projeto</span>
+      </div>
+
+    </div>
+
+    <!-- Right: bell icon -->
+    <div class="cp__topbar-right">
+      <div class="cp__tsec cp__tsec--bl">
+        <button class="cp__icon-btn" type="button" aria-label="Notificações">
+          <div class="cp__ri">
+            <!-- bell: inset[10%_15%] -->
+            <div style="position:absolute;inset:10% 15%">
+              <img [src]="iconBell" alt="" class="cp__ri-img">
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb bar — Figma node I2203:13681;2045:635 | 44px -->
+  <div class="cp__breadcrumb-bar">
+    <div class="cp__breadcrumb">
+      <span class="cp__breadcrumb-item">Início</span>
+      <!-- chevron-right: inset[28.94%_35.78%_27.32%_40%] -->
+      <div class="cp__breadcrumb-sep">
+        <div style="position:absolute;inset:28.94% 35.78% 27.32% 40%">
+          <img [src]="iconChevronRight" alt="" class="cp__breadcrumb-sep-img">
+        </div>
+      </div>
+      <span class="cp__breadcrumb-item">Projetos</span>
+    </div>
+  </div>
+
+</header>
+
+<!-- ─── Body ──────────────────────────────────────────────────────────────── -->
+<div class="cp__body">
+  <div class="cp__card">
+
+    <!-- ─── Card tab bar — Figma node 2214:7670 ─────────────────────────── -->
+    <div class="cp__tabs">
+      <button
+        class="cp__tab"
+        [class.cp__tab--active]="activeTab() === 'dados'"
+        [class.cp__tab--inactive]="activeTab() !== 'dados'"
+        type="button"
+        (click)="activeTab.set('dados')"
+      >Dados do projeto</button>
+      <button
+        class="cp__tab"
+        [class.cp__tab--active]="activeTab() === 'usuarios'"
+        [class.cp__tab--inactive]="activeTab() !== 'usuarios'"
+        type="button"
+        (click)="activeTab.set('usuarios')"
+      >Usuários</button>
+      <button
+        class="cp__tab"
+        [class.cp__tab--active]="activeTab() === 'arquivos'"
+        [class.cp__tab--inactive]="activeTab() !== 'arquivos'"
+        type="button"
+        (click)="activeTab.set('arquivos')"
+      >Arquivos</button>
+    </div>
+
+    <!-- ─── Content area — Figma node 2214:7598 ──────────────────────────── -->
+    <div class="cp__content">
+
+      <!-- ── Dados do projeto — Figma node 2203:13680 ──────────────────── -->
+      @if (activeTab() === 'dados') {
+        <div class="cp__form">
+
+          <!-- Nome do Projeto — Figma node 2214:7606 -->
+          <div class="cp__field">
+            <label class="cp__label">Nome do Projeto</label>
+            <input
+              class="cp__input"
+              type="text"
+              placeholder="Dê um Nome ao Projeto..."
+              [value]="nome()"
+              (input)="nome.set($any($event.target).value)"
+            >
+          </div>
+
+          <!-- Alias do Projeto — Figma node 2214:7607 -->
+          <div class="cp__field">
+            <label class="cp__label">Alias do Projeto</label>
+            <input
+              class="cp__input"
+              type="text"
+              placeholder="Alias do Projeto"
+              [value]="alias()"
+              (input)="alias.set($any($event.target).value)"
+            >
+          </div>
+
+          <!-- Descrição do Projeto — Figma node 2214:7696 | h-[64px] -->
+          <div class="cp__field">
+            <label class="cp__label">Descrição do Projeto</label>
+            <textarea
+              class="cp__textarea"
+              placeholder="Descrição"
+              [value]="descricao()"
+              (input)="descricao.set($any($event.target).value)"
+            ></textarea>
+          </div>
+
+          <!-- Endereço — Figma node 2214:7701 -->
+          <div class="cp__field">
+            <label class="cp__label">Endereço</label>
+            <input
+              class="cp__input"
+              type="text"
+              placeholder="Endereço"
+              [value]="endereco()"
+              (input)="endereco.set($any($event.target).value)"
+            >
+          </div>
+
+          <!-- URL Externa — Figma node 2214:7710 -->
+          <div class="cp__field">
+            <label class="cp__label">URL externa</label>
+            <input
+              class="cp__input"
+              type="text"
+              placeholder="URL Externa"
+              [value]="urlExterna()"
+              (input)="urlExterna.set($any($event.target).value)"
+            >
+          </div>
+
+        </div>
+      }
+
+      <!-- ── Usuários — Figma node 2214:7732 | 2214:15822 ─────────────── -->
+      @if (activeTab() === 'usuarios') {
+        <div class="cp__section">
+
+          <!-- Usuários do Projeto -->
+          <p class="cp__section-title">Usuários do Projeto</p>
+
+          @if (projectUsers().length === 0) {
+            <!-- Empty state — Figma node 2214:8085 -->
+            <div class="cp__empty-state">Ainda não existem usuários no Projeto</div>
+          } @else {
+            <!-- Project users table — Figma node 2214:16018 -->
+            <div class="cp__table-wrap">
+              <table class="cp__table">
+                <thead>
+                  <tr>
+                    <th class="cp__th cp__th--name">Nome</th>
+                    <th class="cp__th cp__th--email">Email</th>
+                    <th class="cp__th cp__th--status">Status</th>
+                    <th class="cp__th cp__th--actions">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (user of projectUsers(); track user.email) {
+                    <tr class="cp__table-row">
+                      <td class="cp__td cp__td--name">{{ user.name }}</td>
+                      <td class="cp__td cp__td--email">{{ user.email }}</td>
+                      <td class="cp__td cp__td--status">
+                        <app-status-badge [status]="user.status" />
+                      </td>
+                      <td class="cp__td cp__td--actions">
+                        <!-- trash: inset[7.5%_15%_10%_15%] — Figma node I2214:16133;2007:1185 -->
+                        <button class="cp__action-btn" type="button" (click)="removeUser(user)" aria-label="Remover usuário">
+                          <div class="cp__ri">
+                            <div style="position:absolute;inset:7.5% 15% 10% 15%">
+                              <img [src]="iconTrash" alt="" class="cp__ri-img">
+                            </div>
+                          </div>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+
+          <!-- Importar Usuários -->
+          <p class="cp__section-title">Importar Usuários</p>
+
+          <!-- Search row — Figma node 2214:8074 -->
+          <div class="cp__import-row">
+            <input class="cp__input" type="text" placeholder="Importar usuário por E-mail SSO...">
+            <button class="cp__btn-inverse" type="button">Importar</button>
+          </div>
+
+          @if (filteredImportResults().length > 0) {
+            <!-- Import results table — Figma node 2214:7847 -->
+            <div class="cp__table-wrap">
+              <table class="cp__table">
+                <thead>
+                  <tr>
+                    <th class="cp__th cp__th--name">Nome</th>
+                    <th class="cp__th cp__th--email">Email</th>
+                    <th class="cp__th cp__th--status">Status</th>
+                    <th class="cp__th cp__th--actions">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (user of filteredImportResults(); track user.email) {
+                    <tr class="cp__table-row">
+                      <td class="cp__td cp__td--name">{{ user.name }}</td>
+                      <td class="cp__td cp__td--email">{{ user.email }}</td>
+                      <td class="cp__td cp__td--status">
+                        <app-status-badge [status]="user.status" />
+                      </td>
+                      <td class="cp__td cp__td--actions">
+                        <!-- plus: inset[15%] — Figma node I2214:8020;2007:1185 -->
+                        <button class="cp__action-btn" type="button" (click)="addUser(user)" aria-label="Adicionar usuário">
+                          <div class="cp__ri">
+                            <div style="position:absolute;inset:15%">
+                              <img [src]="iconPlus" alt="" class="cp__ri-img">
+                            </div>
+                          </div>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+
+        </div>
+      }
+
+      <!-- ── Arquivos — Figma node 2214:8107 ───────────────────────────── -->
+      @if (activeTab() === 'arquivos') {
+        <div class="cp__section">
+
+          <p class="cp__section-title">Arquivos do Projeto</p>
+
+          <!-- Drop zone — Figma node 2214:8122 | border-2 dashed -->
+          <div class="cp__dropzone">
+            <span class="cp__dropzone-hint">Escolher arquivos</span>
+            <button class="cp__btn-inverse cp__btn-inverse--file" type="button">Importar</button>
+          </div>
+
+          @if (projectFiles().length > 0) {
+            <p class="cp__section-title">Arquivos adicionados</p>
+
+            <!-- Files table — Figma node 2214:8625 -->
+            <div class="cp__table-wrap">
+              <table class="cp__table">
+                <thead>
+                  <tr>
+                    <th class="cp__th cp__th--file">Arquivo</th>
+                    <th class="cp__th cp__th--fname">Nome</th>
+                    <th class="cp__th cp__th--actions">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (file of projectFiles(); track file.name) {
+                    <tr class="cp__table-row">
+                      <td class="cp__td cp__td--file">
+                        <img [src]="file.thumbnailUrl" alt="" class="cp__file-thumb">
+                      </td>
+                      <td class="cp__td cp__td--fname">{{ file.name }}</td>
+                      <td class="cp__td cp__td--actions">
+                        <!-- ellipsis: inset[45%_15%] — Figma node I2214:8740;2007:1185 -->
+                        <button class="cp__action-btn" type="button" aria-label="Mais opções">
+                          <div class="cp__ri">
+                            <div style="position:absolute;inset:45% 15%">
+                              <img [src]="iconEllipsis" alt="" class="cp__ri-img">
+                            </div>
+                          </div>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+
+        </div>
+      }
+
+    </div>
+
+    <!-- ─── Footer — Figma node 2214:7678 ────────────────────────────────── -->
+    <div class="cp__footer">
+      <button class="cp__btn-outline" type="button" (click)="cancel()">Cancelar</button>
+      <button class="cp__btn-brand" type="button" (click)="criar()">Criar Projeto</button>
+    </div>
+
+  </div>
+</div>

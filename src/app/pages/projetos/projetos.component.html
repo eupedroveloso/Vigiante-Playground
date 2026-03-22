@@ -1,17 +1,31 @@
 <div class="projetos">
 
-  <app-context-bar pageTitle="Projetos" />
+  <app-context-bar pageTitle="Projetos" (criarProjeto)="goToCriarProjeto()" />
 
-  <!-- Cards grid -->
-  <div class="projetos__grid">
-    @for (project of projects; track project.name) {
-      <app-card-project
-        [name]="project.name"
-        [imageUrl]="project.imageUrl"
-        [layerCount]="project.layerCount"
-        [locationCount]="project.locationCount"
-        [editedAt]="project.editedAt"
-      />
+  <!-- Cards grid or empty state -->
+  <div class="projetos__content">
+    @if (projects().length === 0) {
+      <div class="projetos__empty">
+        <p class="projetos__empty-text">Nenhum projeto criado ainda.</p>
+        <p class="projetos__empty-hint">Clique em "Criar projeto" para começar.</p>
+      </div>
+    } @else {
+      <div class="projetos__grid">
+        @for (project of projects(); track project.id) {
+          <app-card-project
+            [projectId]="project.id"
+            [name]="project.name"
+            [layerCount]="project.layerCount"
+            [locationCount]="project.locationCount"
+            [editedAt]="project.editedAt"
+            [center]="project.center"
+            [zoom]="project.zoom"
+            [pins]="project.pins"
+            (duplicateProject)="duplicateProject($event)"
+            (deleteProject)="deleteProject($event)"
+          />
+        }
+      </div>
     }
   </div>
 

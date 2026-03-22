@@ -5,14 +5,43 @@
   background-color: var(--theme-background-elevated);
 }
 
-.projetos__grid {
+.projetos__content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theme-background-page);
+}
+
+.projetos__grid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-16);
   padding: 24px;
-  background-color: var(--theme-background-page);
   align-content: flex-start;
+}
+
+.projetos__empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 48px 24px;
+}
+
+.projetos__empty-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+}
+
+.projetos__empty-hint {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--theme-text-tertiary);
 }
 
 .projetos__footer {

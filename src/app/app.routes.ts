@@ -14,6 +14,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'criar-projeto',
+    loadComponent: () =>
+      import('./pages/criar-projeto/criar-projeto.component').then(
+        (m) => m.CriarProjetoComponent
+      ),
+  },
+  {
     path: 'projeto-forms',
     loadComponent: () =>
       import('./pages/projeto-forms/projeto-forms.component').then(
@@ -108,6 +115,27 @@ export const routes: Routes = [
             loadComponent: () =>
               import('./pages/styleguide/ds-pages/ds-tab-bar/ds-tab-bar.component').then(
                 (m) => m.DsTabBarComponent
+              ),
+          },
+          {
+            path: 'menu-dropdown',
+            loadComponent: () =>
+              import('./pages/styleguide/ds-pages/ds-menu-dropdown/ds-menu-dropdown.component').then(
+                (m) => m.DsMenuDropdownComponent
+              ),
+          },
+          {
+            path: 'records-table',
+            loadComponent: () =>
+              import('./pages/styleguide/ds-pages/ds-records-table/ds-records-table.component').then(
+                (m) => m.DsRecordsTableComponent
+              ),
+          },
+          {
+            path: 'pin-card',
+            loadComponent: () =>
+              import('./pages/styleguide/ds-pages/ds-pin-card/ds-pin-card.component').then(
+                (m) => m.DsPinCardComponent
               ),
           },
         ],

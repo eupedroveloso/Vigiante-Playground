@@ -1,34 +1,55 @@
-<!-- Figma node: 2045:1762 — Card Project -->
-<article class="card-project">
+<!-- Figma node: 2045:1762 / 2060:817 — Card Project -->
+<article class="card-project" (click)="navigateToProject()">
 
-  <!-- Thumbnail -->
+  <!-- Thumbnail: mini-map with pins -->
   <div class="card-project__thumb">
-    @if (imageUrl()) {
-      <img class="card-project__thumb-img" [src]="imageUrl()!" [alt]="name()" />
-    }
+    <app-map-thumbnail
+      [center]="center()"
+      [zoom]="zoom()"
+      [pins]="pins()"
+    />
   </div>
 
   <!-- Body -->
   <div class="card-project__body">
 
     <!-- Header: name + ellipsis menu -->
-    <!-- ellipsis: Figma node 2045:1721 | Primary inset[45%_15%] inside 16×16px -->
     <div class="card-project__header">
       <span class="card-project__name">{{ name() }}</span>
-      <button class="card-project__menu-btn" type="button" aria-label="Opções do projeto">
-        <div class="card-project__figma-icon card-project__figma-icon--16">
-          <div class="card-project__figma-icon-primary card-project__figma-icon-primary--ellipsis">
-            <img
-              alt=""
-              class="card-project__figma-img"
-              src="https://www.figma.com/api/mcp/asset/9ce991cc-cbf1-461e-b065-a0553c66d1f0"
+
+      <!-- Ellipsis button + dropdown wrapper -->
+      <!-- ellipsis: Figma node 2045:1721 | Primary inset[45%_15%] inside 16×16px -->
+      <div class="card-project__menu-wrapper">
+        <button
+          class="card-project__menu-btn"
+          type="button"
+          aria-label="Opções do projeto"
+          (click)="openMenu($event)"
+        >
+          <div class="card-project__figma-icon card-project__figma-icon--16">
+            <div class="card-project__figma-icon-primary card-project__figma-icon-primary--ellipsis">
+              <img
+                alt=""
+                class="card-project__figma-img"
+                src="https://www.figma.com/api/mcp/asset/3b59e16b-9bcc-4321-a06d-d9d7e8143d56"
+              />
+            </div>
+          </div>
+        </button>
+
+        @if (menuOpen()) {
+          <div class="card-project__dropdown" (click)="$event.stopPropagation()">
+            <app-menu-dropdown
+              (edit)="menuOpen.set(false)"
+              (duplicate)="onDuplicate()"
+              (delete)="onDelete()"
             />
           </div>
-        </div>
-      </button>
+        }
+      </div>
     </div>
 
-    <!-- Footer: stats + edited at -->
+    <!-- Footer: stats chip + edited at -->
     <div class="card-project__footer">
 
       <!-- Stats chip -->
@@ -41,7 +62,7 @@
               <img
                 alt=""
                 class="card-project__figma-img"
-                src="https://www.figma.com/api/mcp/asset/38aaceca-db40-4fd1-81bd-9e8ab4fd5af0"
+                src="https://www.figma.com/api/mcp/asset/70d61bd2-1deb-4f74-853d-5319d2c6baa7"
               />
             </div>
           </div>
@@ -53,7 +74,7 @@
               <img
                 alt=""
                 class="card-project__figma-img"
-                src="https://www.figma.com/api/mcp/asset/0b7c0692-c6fb-477d-9e40-80a85a92abc5"
+                src="https://www.figma.com/api/mcp/asset/4eb85849-173b-4d32-bd72-7db184bcc792"
               />
             </div>
           </div>

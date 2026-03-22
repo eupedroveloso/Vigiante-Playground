@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { IconComponent } from '../../shared/icon/icon.component';
 
 export interface BreadcrumbItem {
@@ -26,4 +26,5 @@ export class ContextBarComponent {
     { label: 'Início' },
     { label: 'Projetos' },
   ]);
+  readonly criarProjeto = output<void>();
 }

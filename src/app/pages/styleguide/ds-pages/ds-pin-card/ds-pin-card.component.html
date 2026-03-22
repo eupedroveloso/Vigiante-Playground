@@ -1,0 +1,18 @@
+<div class="ds-page">
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Pin Card</h2>
+    <p class="ds-page__note">Figma node: 2143:12523 — Card de inspeção exibido ao clicar em um pin no mapa</p>
+    <div class="ds-component-row">
+      <app-pin-card
+        [pin]="samplePin"
+        (close)="visible.set(false)"
+        (editRecord)="show()"
+      />
+    </div>
+    @if (!visible()) {
+      <button style="margin-top:8px;font-size:12px;cursor:pointer" (click)="show()">
+        Mostrar card novamente
+      </button>
+    }
+  </section>
+</div>

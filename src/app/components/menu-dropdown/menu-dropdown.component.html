@@ -1,0 +1,31 @@
+<!-- Figma node: 2066:1402 — menu-dropdown -->
+<div class="menu-dropdown">
+
+  <!-- Group 1: Editar, Duplicar -->
+  <div class="menu-dropdown__group">
+    <button class="menu-dropdown__item" type="button" (click)="edit.emit()">
+      <span class="menu-dropdown__label">Editar Projeto</span>
+    </button>
+    <button class="menu-dropdown__item" type="button" (click)="duplicate.emit()">
+      <span class="menu-dropdown__label">Duplicar</span>
+    </button>
+    <div class="menu-dropdown__separator"></div>
+  </div>
+
+  <!-- Group 2: Excluir -->
+  <div class="menu-dropdown__group">
+    <button class="menu-dropdown__item" type="button" (click)="delete.emit()">
+      <span class="menu-dropdown__label">Excluir</span>
+      <div class="menu-dropdown__icon">
+        <!-- trash: Figma node I2066:1402;2066:1268;2066:1227;2006:726 | inset[7.5%_15%_10%_15%] inside 16×16px -->
+        <div class="menu-dropdown__figma-icon">
+          <div class="menu-dropdown__figma-icon-primary menu-dropdown__figma-icon-primary--trash">
+            <img alt="" class="menu-dropdown__figma-img"
+              src="https://www.figma.com/api/mcp/asset/80258a1b-9fc5-4cc7-ac3e-527b547c9693" />
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>
+
+</div>

@@ -280,3 +280,12 @@
   border-radius: var(--radius-md);
   overflow: hidden;
 }
+
+// Records Table showcase frame — fixed height to show table properly
+.ds-records-table-frame {
+  width: 804px;
+  height: 600px;
+  border: var(--border-width) solid var(--theme-border-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}

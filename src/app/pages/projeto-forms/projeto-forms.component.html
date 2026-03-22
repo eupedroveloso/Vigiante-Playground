@@ -1,13 +1,23 @@
-<header class="pf__header">
-  <!-- Tab bar row: 32px, dark background -->
-  <app-tab-bar [tabs]="tabs" [activeIndex]="0" />
+<!-- Figma nodes: 2163:4586 (map view) + 2163:4618 (forms list view) -->
 
-  <!-- Toolbar row: 52px, white background -->
+<header class="pf__header">
+
+  <!-- Tab bar: 32px dark — Figma node I2163:4802;2106:4230 -->
+  <app-tab-bar
+    [tabs]="tabs"
+    [activeIndex]="0"
+    (homeClick)="goHome()"
+    (backClick)="goBack()"
+    (forwardClick)="goForward()"
+  />
+
+  <!-- Toolbar: 52px white — shared shell, center content switches by viewMode -->
   <div class="pf__toolbar">
     <div class="pf__toolbar-side pf__toolbar-side--left">
-      <!-- Bars / hamburger -->
+
+      <!-- Hamburger — bars icon: inset[20%_15%] -->
       <div class="pf__tsec pf__tsec--br">
-        <button class="pf__icon-btn">
+        <button class="pf__icon-btn" type="button">
           <div class="pf__ri">
             <div style="position:absolute;inset:20% 15%">
               <img [src]="iconBars" alt="" class="pf__ri-img">
@@ -16,58 +26,97 @@
         </button>
       </div>
 
-      <!-- View mode toggle: map / list -->
+      <!-- View mode toggle — map / list -->
+      <!-- Map view: map ACTIVE, list inactive — Figma node I2163:4617;2066:2789 -->
+      <!-- Forms view: map inactive, list ACTIVE — Figma node I2163:4802;2106:4237 -->
       <div class="pf__tsec pf__tsec--br">
         <div class="pf__mode-toggle">
-          <button class="pf__mode-btn pf__mode-btn--inactive">
+          <!-- map button -->
+          <button
+            class="pf__mode-btn"
+            [class.pf__mode-btn--active]="viewMode() === 'map'"
+            [class.pf__mode-btn--inactive]="viewMode() !== 'map'"
+            type="button"
+            (click)="setView('map')"
+          >
+            <!-- map icon: inset[11.67%_10%_11.65%_10%] -->
             <div class="pf__ri">
               <div style="position:absolute;inset:11.67% 10% 11.65% 10%">
-                <img [src]="iconMapDark" alt="" class="pf__ri-img">
+                <img [src]="iconMapActive" alt="" class="pf__ri-img">
               </div>
             </div>
           </button>
-          <button class="pf__mode-btn pf__mode-btn--active">
+          <!-- list button -->
+          <button
+            class="pf__mode-btn"
+            [class.pf__mode-btn--active]="viewMode() === 'list'"
+            [class.pf__mode-btn--inactive]="viewMode() !== 'list'"
+            type="button"
+            (click)="setView('list')"
+          >
+            <!-- list icon: inset[17.5%_10%_17.5%_12.5%] -->
             <div class="pf__ri">
               <div style="position:absolute;inset:17.5% 10% 17.5% 12.5%">
-                <img [src]="iconListLight" alt="" class="pf__ri-img">
+                <img [src]="iconList" alt="" class="pf__ri-img">
               </div>
             </div>
           </button>
         </div>
       </div>
 
-      <!-- Location count + primary action -->
-      <div class="pf__tsec pf__tsec--br pf__tsec--gap">
-        <div class="pf__location-badge">
-          <div class="pf__ri">
-            <div style="position:absolute;inset:10% 20% 9.53% 20%">
-              <img [src]="iconLocationDot" alt="" class="pf__ri-img">
-            </div>
-          </div>
-          <span class="pf__location-count">{{ mapPins.length }}</span>
-        </div>
-        <button class="pf__btn-primary">Criar Formulário</button>
-      </div>
-    </div>
+      <!-- MAP VIEW: "Todos os registros" dropdown + location count -->
+      @if (viewMode() === 'map') {
 
-    <div class="pf__toolbar-side pf__toolbar-side--right">
-      <!-- Search input -->
-      <div class="pf__tsec pf__tsec--bl">
-        <div class="pf__search">
-          <div class="pf__search-icon-wrap">
-            <div class="pf__ri">
-              <div style="position:absolute;inset:10% 10.01% 10.01% 10%">
-                <img [src]="iconSearch" alt="" class="pf__ri-img">
+        <!-- Todos os registros dropdown — Figma node I2163:4617;2066:3082 -->
+        <div class="pf__tsec pf__tsec--br">
+          <div class="pf__dropdown">
+            <div class="pf__dropdown-icon">
+              <div class="pf__ri">
+                <div style="position:absolute;inset:17.5% 10% 17.5% 12.5%">
+                  <img [src]="iconList" alt="" class="pf__ri-img">
+                </div>
               </div>
             </div>
+            <button class="pf__dropdown-trigger" type="button">
+              <span class="pf__dropdown-label">Todos os registros</span>
+              <!-- chevron-down: inset[38.94%_26.26%_36.84%_30%] -->
+              <div class="pf__ri">
+                <div style="position:absolute;inset:38.94% 26.26% 36.84% 30%">
+                  <img [src]="iconChevronDown" alt="" class="pf__ri-img">
+                </div>
+              </div>
+            </button>
           </div>
-          <div class="pf__search-input">Buscar Formulário</div>
         </div>
-      </div>
 
-      <!-- Bell -->
+        <!-- Location count badge — Figma node I2163:4617;2111:5609 -->
+        <!-- location-dot: inset[10%_20%_9.53%_20%] -->
+        <div class="pf__tsec pf__tsec--br">
+          <div class="pf__location-badge">
+            <div class="pf__ri">
+              <div style="position:absolute;inset:10% 20% 9.53% 20%">
+                <img [src]="iconLocationDot" alt="" class="pf__ri-img">
+              </div>
+            </div>
+            <span class="pf__location-count">{{ mapPins.length }}</span>
+          </div>
+        </div>
+
+      }
+
+      <!-- LIST VIEW: "Criar Formulário" button — Figma node I2163:4802;2106:4318 -->
+      @if (viewMode() === 'list') {
+        <div class="pf__tsec pf__tsec--br">
+          <button class="pf__btn-brand" type="button">Criar Formulário</button>
+        </div>
+      }
+
+    </div>
+
+    <!-- Bell — right side: inset[10%_15%] -->
+    <div class="pf__toolbar-side pf__toolbar-side--right">
       <div class="pf__tsec pf__tsec--bl">
-        <button class="pf__icon-btn">
+        <button class="pf__icon-btn" type="button">
           <div class="pf__ri">
             <div style="position:absolute;inset:10% 15%">
               <img [src]="iconBell" alt="" class="pf__ri-img">
@@ -78,32 +127,110 @@
     </div>
   </div>
 
-  <!-- Breadcrumb row: 44px, white background -->
+  <!-- Breadcrumb row: 44px white — Figma node I2163:4802;2106:4224 -->
   <div class="pf__breadcrumb-bar">
     <app-breadcrumb [items]="breadcrumbItems" />
   </div>
+
 </header>
 
-<div class="pf__body">
-  <!-- Left white panel: 804px -->
-  <div class="pf__panel" [class.pf__panel--collapsed]="!panelExpanded()">
-    <!-- Data table -->
+<!-- ─── MAP VIEW body ──────────────────────────────────────────────────────── -->
+<!-- Figma node: 2163:4586 — full-width map + floating controls -->
+@if (viewMode() === 'map') {
+  <div class="pf__body">
+
+    <div class="pf__map">
+      <app-map
+        [center]="mapCenter"
+        [zoom]="mapZoom"
+        [pins]="mapPins"
+        [selectedPin]="selectedPin()"
+        (pinClick)="onPinClick($event)"
+      />
+      @if (selectedPin()) {
+        <app-pin-card
+          class="pf__pin-card"
+          [pin]="selectedPin()!"
+          [style.left.px]="pinCardX()"
+          [style.top.px]="pinCardY()"
+          (close)="onPinCardClose()"
+          (editRecord)="onEditRecord($event)"
+        />
+      }
+    </div>
+
+    <!-- Floating map controls — Figma node 2163:4607 -->
+    <div class="pf__map-ctrl">
+
+      <!-- GPS + Zoom -->
+      <div class="pf__map-ctrl-group">
+        <!-- crosshairs: inset[7.5%] -->
+        <button class="pf__map-ctrl-btn" type="button" aria-label="Localizar" (click)="locate()">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:7.5%">
+              <img [src]="iconCrosshairs" alt="" class="pf__ri-img">
+            </div>
+          </div>
+        </button>
+        <!-- plus: inset[15%] -->
+        <button class="pf__map-ctrl-btn" type="button" aria-label="Aproximar" (click)="zoomIn()">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:15%">
+              <img [src]="iconPlus" alt="" class="pf__ri-img">
+            </div>
+          </div>
+        </button>
+        <!-- minus: inset[47.5%_15%] -->
+        <button class="pf__map-ctrl-btn" type="button" aria-label="Afastar" (click)="zoomOut()">
+          <div class="pf__ri">
+            <div style="position:absolute;inset:47.5% 15%">
+              <img [src]="iconMinus" alt="" class="pf__ri-img">
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Street view + map style -->
+      <div class="pf__map-ctrl-group">
+        <button class="pf__map-ctrl-btn pf__map-ctrl-btn--lg" type="button" aria-label="Street View">
+          <img [src]="iconStreetView" alt="" class="pf__street-view-img">
+        </button>
+        <div class="pf__map-style">
+          <button class="pf__map-style-btn" type="button" aria-label="Estilo de mapa"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+}
+
+<!-- ─── LIST VIEW body ─────────────────────────────────────────────────────── -->
+<!-- Figma node: 2163:4618 — forms management table -->
+@if (viewMode() === 'list') {
+  <div class="pf__list-body">
+
+    <!-- Forms table — white card, border, radius 10px — Figma node 2163:4623 -->
     <div class="pf__table-wrap">
       <table class="pf__table">
         <thead>
-          <tr>
+          <tr class="pf__table-hrow">
+            <!-- col 1: Nome do Formulário — flex-1, px-24 -->
             <th class="pf__th pf__th--name">Nome do Formulário</th>
+            <!-- col 2: Registros — 155px -->
             <th class="pf__th pf__th--records">Registros</th>
+            <!-- col 3: Ações — 85px -->
             <th class="pf__th pf__th--actions">Ações</th>
           </tr>
         </thead>
         <tbody>
           @for (form of forms; track form.name) {
-            <tr class="pf__tr">
+            <tr class="pf__table-row">
               <td class="pf__td pf__td--name">{{ form.name }}</td>
               <td class="pf__td pf__td--records">{{ form.records }}</td>
               <td class="pf__td pf__td--actions">
-                <button class="pf__action-btn">
+                <!-- ellipsis button — Figma node 2163:4772 | inset[45%_15%] inside 16×16 -->
+                <button class="pf__action-btn" type="button" aria-label="Mais opções">
                   <div class="pf__ri">
                     <div style="position:absolute;inset:45% 15%">
                       <img [src]="iconEllipsis" alt="" class="pf__ri-img">
@@ -117,29 +244,18 @@
       </table>
     </div>
 
-    <!-- Pagination -->
+    <!-- Pagination — Figma node 2163:4797 -->
+    <!-- Active page: border #9747ff + shadow ring rgba(151,71,255,0.2) -->
     <div class="pf__pagination">
-      <button class="pf__page-btn pf__page-btn--active">1</button>
-      <button class="pf__page-btn">2</button>
-      <button class="pf__page-btn">3</button>
+      @for (page of totalPages; track page) {
+        <button
+          class="pf__page-btn"
+          [class.pf__page-btn--active]="currentPage() === page"
+          type="button"
+          (click)="currentPage.set(page)"
+        >{{ page }}</button>
+      }
     </div>
 
   </div>
-
-  <!-- Sidebar toggle — sits at the panel/map boundary, outside the panel -->
-  <button
-    class="pf__sidebar-toggle"
-    [class.pf__sidebar-toggle--collapsed]="!panelExpanded()"
-    (click)="togglePanel()"
-    [attr.aria-label]="panelExpanded() ? 'Compactar painel' : 'Expandir painel'"
-  >
-    <div class="pf__ri" style="overflow:visible">
-      <img [src]="iconSidebarToggle" alt="" class="pf__sidebar-toggle-img">
-    </div>
-  </button>
-
-  <!-- Interactive OpenStreetMap -->
-  <div class="pf__map">
-    <app-map [center]="mapCenter" [zoom]="mapZoom" [pins]="mapPins" />
-  </div>
-</div>
+}

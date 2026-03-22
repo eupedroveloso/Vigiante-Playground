@@ -1,0 +1,93 @@
+// MenuDropdown — Figma node: 2066:1402
+// Shadow low: 0px 4px 8px 0px rgba(0,0,0,0.08)
+// Width: 232px | Padding: 4px | Border-radius: 8px
+
+.menu-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 232px;
+  padding: var(--space-4);
+  background-color: var(--theme-background-elevated);
+  border: var(--border-width) solid var(--theme-border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-low);
+}
+
+.menu-dropdown__group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+// Each dropdown item: px-8px py-6px, rounded-sm (6px)
+.menu-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-1-5) var(--spacing-2);
+  background-color: var(--theme-background-elevated);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--theme-border-primary) 60%, transparent);
+  }
+}
+
+// Label: 14px/18px Albert Sans Regular, color #0a0a0a
+.menu-dropdown__label {
+  flex: 1 0 0;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-sm);
+  color: var(--base-popover-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-dropdown__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// Figma icon approach — same pattern as card-project
+.menu-dropdown__figma-icon {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+}
+
+.menu-dropdown__figma-icon-primary {
+  position: absolute;
+
+  // trash: Figma node I2066:1402;2066:1268;2066:1227;2006:726 | inset[7.5%_15%_10%_15%]
+  &--trash {
+    inset: 7.5% 15% 10% 15%;
+  }
+}
+
+.menu-dropdown__figma-img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+}
+
+// Separator — Figma node: I2066:1402;2066:1265
+// 1px horizontal rule between groups
+.menu-dropdown__separator {
+  height: 1px;
+  background-color: var(--theme-border-primary);
+  margin-top: 1px;
+}

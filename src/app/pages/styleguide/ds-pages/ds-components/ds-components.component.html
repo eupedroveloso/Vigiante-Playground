@@ -6,17 +6,38 @@
     <p class="ds-page__note">Figma node: 2045:1762</p>
     <div class="ds-component-row">
       <app-card-project
+        projectId="ds-demo-focos"
         name="Focos de dengue - Brasília"
         [layerCount]="4"
         [locationCount]="324"
         editedAt="2 dias"
       />
       <app-card-project
+        projectId="ds-demo-rhamb"
         name="RHAMB - DF"
         [layerCount]="42"
         [locationCount]="2752"
         editedAt="8 dias"
       />
+    </div>
+  </section>
+
+  <!-- Menu Dropdown -->
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Menu Dropdown</h2>
+    <p class="ds-page__note">Figma node: 2066:1402</p>
+    <div class="ds-component-row">
+      <app-menu-dropdown />
+    </div>
+  </section>
+
+  <!-- Status Badge -->
+  <section class="ds-page__section">
+    <h2 class="ds-page__title">Status Badge</h2>
+    <p class="ds-page__note">Figma node: 2214:8054 (Ativo) | 2214:8101 (Desativado)</p>
+    <div class="ds-component-row">
+      <app-status-badge status="ativo" />
+      <app-status-badge status="desativado" />
     </div>
   </section>
 

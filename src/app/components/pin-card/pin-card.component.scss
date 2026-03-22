@@ -1,0 +1,127 @@
+.pin-card {
+  width: 333px;
+  background: var(--theme-background-elevated);
+  border: var(--border-width) solid var(--theme-border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-low);
+  padding: var(--space-8) var(--space-12) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+// Header
+
+.pin-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) 0;
+}
+
+.pin-card__label {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: var(--leading-sm);
+  color: var(--theme-text-secondary);
+  flex-shrink: 0;
+}
+
+.pin-card__id {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: var(--leading-sm);
+  color: var(--theme-text-primary);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 223px;
+}
+
+.pin-card__close {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.pin-card__ri {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.pin-card__ri-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+// Separator
+
+.pin-card__separator {
+  height: var(--border-width);
+  background: var(--theme-border-primary);
+  margin: 0 calc(-1 * var(--space-12));
+}
+
+// Data rows
+
+.pin-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--space-4) 0;
+}
+
+.pin-card__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: var(--leading-sm);
+}
+
+.pin-card__row-label {
+  color: var(--theme-text-secondary);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.pin-card__row-value {
+  color: var(--theme-text-primary);
+}
+
+// Button
+
+.pin-card__btn {
+  width: 100%;
+  height: var(--size-input);
+  background: var(--theme-background-brand);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  color: var(--theme-text-inverse);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  margin-top: var(--space-4);
+
+  &:hover {
+    background: color-mix(in srgb, var(--theme-background-brand) 88%, #000);
+  }
+}

@@ -1,3 +1,5 @@
+// Figma nodes: 2163:4586 (map view) + 2163:4618 (forms list view)
+
 :host {
   display: flex;
   flex-direction: column;
@@ -16,7 +18,18 @@
   z-index: 10;
 }
 
-// Toolbar row (52px)
+// Breadcrumb row: 44px — Figma places it between tab-bar and toolbar
+// Figma node: I2163:4617;2066:2799
+.pf__breadcrumb-bar {
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  padding: 4px 4px 4px 16px;
+  background: var(--theme-background-elevated, white);
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+}
+
+// Toolbar row: 52px — Figma node I2163:4617;2066:2783
 .pf__toolbar {
   flex: 0 0 52px;
   display: flex;
@@ -39,7 +52,6 @@
 
   &--br { border-right: 1px solid var(--theme-border-primary, #ededed); }
   &--bl { border-left:  1px solid var(--theme-border-primary, #ededed); }
-  &--gap { gap: 8px; }
 }
 
 .pf__icon-btn {
@@ -53,8 +65,14 @@
   border-radius: 8px;
   cursor: pointer;
   padding: 0;
+
+  &:hover {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+  }
 }
 
+// View mode toggle — Figma node I2163:4617;2066:2789
+// Outer pill: bg elevated-down, radius 10px, padding 2px
 .pf__mode-toggle {
   display: flex;
   align-items: center;
@@ -73,58 +91,32 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  border: none;
 
-  &--inactive {
-    background: var(--theme-background-elevated-down, #f8f8f8);
-    border: 1px solid var(--theme-background-elevated-down, #f8f8f8);
-    opacity: 0.45;
-  }
-
+  // active (map selected) — white bg + border
   &--active {
     background: var(--theme-background-elevated, white);
     border: 1px solid var(--theme-border-primary, #ededed);
+    opacity: 1;
+  }
+
+  // inactive (list) — transparent bg, 45% opacity
+  &--inactive {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+    border: 1px solid var(--theme-border-disabled, #f8f8f8);
+    opacity: 0.45;
   }
 }
 
-.pf__location-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
-  background: var(--theme-background-elevated-down, #f8f8f8);
-  border: 1px solid var(--theme-border-primary, #ededed);
-  border-radius: 8px;
-}
-
-.pf__location-count {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 14px;
-  color: #000;
-}
-
-.pf__btn-primary {
+// "Todos os registros" dropdown — Figma node I2163:4617;2066:3082 | width 273px
+.pf__dropdown {
   display: flex;
   align-items: center;
   height: 36px;
-  padding: 8px 16px;
-  background: var(--theme-background-brand, #a001a8);
-  color: var(--theme-text-inverse, #f8f8f8);
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.pf__search {
-  display: flex;
-  align-items: center;
-}
-
-.pf__search-icon-wrap {
+// Left icon cell — Figma node I2163:4617;2066:3058 | 36×36px
+.pf__dropdown-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,34 +126,57 @@
   border: 1px solid var(--theme-border-primary, #ededed);
   border-right: none;
   border-radius: 8px 0 0 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
 }
 
-.pf__search-input {
+// Dropdown trigger button — Figma node I2163:4617;2066:3060
+.pf__dropdown-trigger {
   display: flex;
   align-items: center;
-  width: 256px;
+  justify-content: space-between;
+  flex: 1 0 0;
+  min-width: 0;
+  width: 237px; // 273px total - 36px icon
   height: 36px;
-  padding: 4px 12px;
+  padding: 8px 16px;
   background: var(--theme-background-elevated, white);
   border: 1px solid var(--theme-border-primary, #ededed);
   border-radius: 0 8px 8px 0;
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 14px;
-  color: var(--theme-text-tertiary, #767070);
+  cursor: pointer;
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-normal, 400);
+  line-height: 18px;
+  color: var(--theme-text-primary, #0d0d0d);
+  white-space: nowrap;
+}
+
+.pf__dropdown-label {
+  flex: 1;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-// Breadcrumb row (44px)
-.pf__breadcrumb-bar {
-  flex: 0 0 44px;
+// Location count badge — Figma node I2163:4617;2111:5609
+.pf__location-badge {
   display: flex;
   align-items: center;
-  padding: 4px 4px 4px 16px;
-  background: var(--theme-background-elevated, white);
-  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+  gap: 8px;
+  padding: 8px 10px 8px 8px;
+  background: var(--theme-background-elevated-down, #f8f8f8);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 8px;
+}
+
+.pf__location-count {
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-normal, 400);
+  line-height: 18px;
+  color: #000;
 }
 
 // ─── Body ────────────────────────────────────────────────────────────────────
@@ -173,157 +188,6 @@
   position: relative;
 }
 
-// ─── Panel ───────────────────────────────────────────────────────────────────
-
-.pf__panel {
-  flex: 0 0 auto;
-  width: 804px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  padding: 8px;
-  background: var(--theme-background-elevated, white);
-  height: 100%;
-  overflow: hidden;
-  transition: width 0.25s ease, padding 0.25s ease;
-
-  &--collapsed {
-    width: 0;
-    padding: 0;
-  }
-}
-
-// Data table
-.pf__table-wrap {
-  width: 100%;
-  border: 1px solid var(--theme-border-primary, #ededed);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.pf__table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.pf__th {
-  height: 32px;
-  padding: 8px 24px;
-  border-bottom: 1px solid var(--theme-border-primary, #ededed);
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--theme-text-primary, #0d0d0d);
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  &--records { width: 155px; padding: 8px; }
-  &--actions { width: 85px;  padding: 8px; }
-}
-
-.pf__td {
-  height: 57px;
-  padding: 8px 24px;
-  border-bottom: 1px solid var(--theme-border-primary, #ededed);
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 14px;
-  color: var(--theme-text-primary, #0d0d0d);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  &--records { width: 155px; padding: 8px; }
-  &--actions { width: 85px;  padding: 8px 16px 8px 8px; }
-}
-
-.pf__tr:last-child .pf__td {
-  border-bottom: none;
-}
-
-.pf__action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 0;
-}
-
-// Pagination
-.pf__pagination {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.pf__page-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  font-family: 'Albert Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--theme-text-primary, #0d0d0d);
-  cursor: pointer;
-
-  &--active {
-    border-color: #9747ff;
-    box-shadow: 0 0 0 3px rgba(151, 71, 255, 0.2);
-  }
-}
-
-// ─── Sidebar toggle ───────────────────────────────────────────────────────────
-// Positioned absolutely at the panel/map boundary; slides with the panel
-
-.pf__sidebar-toggle {
-  position: absolute;
-  left: 786px; // panel(804px) - half-button(18px) = 786
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--theme-background-elevated, white);
-  border: none;
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-  z-index: 500;
-  padding: 0;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
-  transition: left 0.25s ease;
-
-  &--collapsed {
-    left: 0;
-  }
-}
-
-.pf__sidebar-toggle-img {
-  position: absolute;
-  width: 12.8px;
-  height: 9.6px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  max-width: none;
-}
-
 // ─── Map ─────────────────────────────────────────────────────────────────────
 
 .pf__map {
@@ -332,17 +196,284 @@
   overflow: hidden;
 }
 
-// ─── Shared raster icon helper ────────────────────────────────────────────────
+.pf__pin-card {
+  position: absolute;
+  // top/left set via [style] binding (pin screen coords)
+  // translateX(-50%): center card over pin
+  // translateY(-100% - 48px): place above pin circle (40px) + tail (4px) + 4px gap
+  transform: translateX(-50%) translateY(calc(-100% - 48px));
+  z-index: 100;
+}
+
+// ─── Floating map controls panel — Figma node 2163:4607 ──────────────────────
+// width 48px, right-edge-centred, shadow/lg, border, border-radius 16px
+
+.pf__map-ctrl {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  width: 48px;
+  background: var(--base-background, white);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+// Each group inside the panel — border-top separator
+.pf__map-ctrl-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  border-top: 1px solid var(--theme-border-primary, #ededed);
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+// Standard 36×36px icon button inside the panel
+.pf__map-ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+  }
+
+  // Larger button for street-view (40×40px) — Figma node 2163:4614
+  &--lg {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+}
+
+// Street view icon: 12.14×20.9px, centred inside button — Figma node I2163:4615;2006:870
+.pf__street-view-img {
+  width: 12.14px;
+  height: 20.9px;
+  display: block;
+  max-width: none;
+  flex-shrink: 0;
+}
+
+// Map style switcher — Figma node 2027:1197 (32×32px single tile)
+.pf__map-style {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.8px solid var(--theme-border-secondary, #d7d6d6);
+}
+
+.pf__map-style-btn {
+  width: 100%;
+  height: 100%;
+  background: var(--theme-background-elevated-down, #f8f8f8);
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+// "Criar Formulário" button — Figma node I2163:4802;2106:4318
+// brand bg, white text, 36px height, rounded-md, shadow/xs
+.pf__btn-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 8px 16px;
+  background: var(--theme-background-brand, #a001a8);
+  color: var(--theme-text-inverse, #f8f8f8);
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: 600;
+  line-height: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+// ─── List / forms view body — Figma node 2163:4618 ────────────────────────
+
+// Outer wrapper: elevated-down bg, 24px padding
+// Figma: bg-[#f8f8f8], p-[24px]
+.pf__list-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 24px;
+  background: var(--theme-background-elevated-down, #f8f8f8);
+  overflow-y: auto;
+}
+
+// White table card — Figma node 2163:4623
+// border, border-radius 10px, overflow-hidden
+.pf__table-wrap {
+  background: var(--theme-background-elevated, white);
+  border: 1px solid var(--theme-border-primary, #ededed);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+// Table resets
+.pf__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+// Header row: 32px — Figma: h-[32px], font-semibold
+.pf__table-hrow {
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+}
+
+.pf__th {
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--theme-text-primary, #0d0d0d);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 32px;
+
+  // col 1: Nome do Formulário — flex-1, px-24, py-8
+  &--name    { padding: 8px 24px; }
+  // col 2: Registros — 155px, p-8
+  &--records { width: 155px; padding: 8px; }
+  // col 3: Ações — 85px, pl-8 pr-16 py-8
+  &--actions { width: 85px; padding: 8px 16px 8px 8px; }
+}
+
+// Data rows: 57px — Figma: h-[57px], border-bottom
+.pf__table-row {
+  height: 57px;
+  border-bottom: 1px solid var(--theme-border-primary, #ededed);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--theme-border-primary) 30%, transparent);
+  }
+}
+
+.pf__td {
+  font-family: var(--font-sans, 'Albert Sans', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--theme-text-primary, #0d0d0d);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--name    { padding: 8px 24px; }
+  &--records { padding: 8px; }
+  // Actions: contains a 36×36 button, pl-8 pr-16 py-8
+  &--actions { padding: 8px 16px 8px 8px; }
+}
+
+// Ellipsis action button — Figma node 2163:4772 | 36×36px transparent
+.pf__action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+  }
+}
+
+// ─── Pagination — Figma node 2163:4797 ────────────────────────────────────
+// Centred row, gap 4px, buttons 32×32
+
+.pf__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 0 0;
+}
+
+.pf__page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans, 'Geist', sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--theme-text-primary, #0d0d0d);
+
+  &:hover {
+    background: var(--theme-background-elevated-down, #f8f8f8);
+  }
+
+  // Active page — Figma: border #9747ff, box-shadow ring rgba(151,71,255,0.2)
+  &--active {
+    background: transparent;
+    border-color: #9747ff;
+    box-shadow: 0 0 0 3px rgba(151, 71, 255, 0.2);
+  }
+}
+
+// ─── Shared raster icon helper ─────────────────────────────────────────────
 
 .pf__ri {
   position: relative;
   width: 16px;
   height: 16px;
-  overflow: hidden; // must be 'hidden', NOT 'clip' — matches icon.component pattern
+  overflow: hidden;
   flex-shrink: 0;
 }
 
-// Inner positioning div (set via inline style inset) needs position: absolute
 .pf__ri > div {
   position: absolute;
 }

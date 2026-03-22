@@ -1,0 +1,38 @@
+<div class="pin-card">
+  <!-- Header -->
+  <div class="pin-card__header">
+    <span class="pin-card__label">Registro</span>
+    <span class="pin-card__id">{{ pin().id ?? '—' }}</span>
+    <button class="pin-card__close" (click)="close.emit()">
+      <div class="pin-card__ri">
+        <div style="position:absolute;inset:20.01%">
+          <img [src]="iconXmark" alt="Fechar" class="pin-card__ri-img">
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <!-- Separator -->
+  <div class="pin-card__separator"></div>
+
+  <!-- Data rows -->
+  <div class="pin-card__rows">
+    <div class="pin-card__row">
+      <span class="pin-card__row-label">Tipo</span>
+      <span class="pin-card__row-value">Marcador</span>
+    </div>
+    <div class="pin-card__row">
+      <span class="pin-card__row-label">Lat</span>
+      <span class="pin-card__row-value">{{ pin().lat }}</span>
+    </div>
+    <div class="pin-card__row">
+      <span class="pin-card__row-label">Lon</span>
+      <span class="pin-card__row-value">{{ pin().lng }}</span>
+    </div>
+  </div>
+
+  <!-- Action button -->
+  <button class="pin-card__btn" (click)="editRecord.emit(pin())">
+    Editar Registro
+  </button>
+</div>

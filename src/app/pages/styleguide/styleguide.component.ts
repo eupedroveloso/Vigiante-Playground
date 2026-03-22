@@ -30,6 +30,9 @@ export class StyleguideComponent {
         { path: 'components/context-bar', label: 'Context Bar' },
         { path: 'components/breadcrumb', label: 'Breadcrumb' },
         { path: 'components/tab-bar', label: 'Tab Bar' },
+        { path: 'components/menu-dropdown', label: 'Menu Dropdown' },
+        { path: 'components/records-table', label: 'Records Table' },
+        { path: 'components/pin-card', label: 'Pin Card' },
       ],
     },
     {
